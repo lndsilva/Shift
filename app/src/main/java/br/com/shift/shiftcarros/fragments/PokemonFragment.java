@@ -21,6 +21,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -54,6 +55,7 @@ public class PokemonFragment extends Fragment {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://pokeapi.co/")
+                .addConverterFactory(GsonConverterFactory.create())
                 .build();
         PokemonAPI api = retrofit.create(PokemonAPI.class);
 
