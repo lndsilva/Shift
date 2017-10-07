@@ -9,42 +9,52 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import br.com.shift.shiftcarros.R;
 import br.com.shift.shiftcarros.model.Pokemon;
 
-public class PokemonAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.PokemonViewHolder> {
 
     private Context context;
-    private  List<Pokemon> pokemons;
+    private List<Pokemon> pokemons;
 
-    public PokemonAdapter(Context context, List<Pokemon> pokemons){
+    public PokemonAdapter(Context context, List<Pokemon> pokemons) {
         this.context = context;
         this.pokemons = pokemons;
 
     }
-    @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-     //estamos selecionando o layout da linha da nossa lista
 
-        View view = LayoutInflater.from(context).inflate(R.layout.pokemon_item, parent,false);
+    @Override
+    public PokemonAdapter.PokemonViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        //estamos selecionando o layout da linha da nossa lista
+
+        View view = LayoutInflater.from(context).inflate(R.layout.pokemon_item, parent, false);
 
         return new PokemonViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(PokemonAdapter.PokemonViewHolder holder, int position) {
 
+        Pokemon pokemon = pokemons.get(position);
+        holder.tvNomePokemon.setText(pokemon.getNome());
+        Picasso.with(context)
+                .load("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + (position + 1) + ".png")
+                .error(R.drawable.erro)
+                .placeholder(R.drawable.placeholder)
+                .into(holder.ivPokemon);
     }
 
     @Override
     public int getItemCount() {
 
-        return 0;
+        return pokemons.size();
     }
 
-    public class PokemonViewHolder extends RecyclerView.ViewHolder{
+    public class PokemonViewHolder extends RecyclerView.ViewHolder {
 
 
         TextView tvNomePokemon;
