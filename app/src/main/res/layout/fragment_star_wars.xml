@@ -2,12 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="br.com.shift.shiftcarros.fragments.PokemonFragment">
+    tools:context="br.com.shift.shiftcarros.fragments.StarWarsFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/label_pokemon" />
+        android:text="@string/label_star_wars"/>
 
 </FrameLayout>
